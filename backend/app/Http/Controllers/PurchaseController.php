@@ -25,12 +25,9 @@ class PurchaseController extends Controller
 
         if($validator->passes()) {
             $purchase = new Purchase($data);
-            if($purchase->save()){
-                return response()->json(compact('purchase'));
-            }
-
+            $purchase->save();
+            return response()->json(compact('purchase'));
         }
-
         return response()->json($validator->errors()->all());
     }
 }
